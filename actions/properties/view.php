@@ -14,7 +14,8 @@ $db->query = "SELECT
     product_prices.base_price 
 FROM property_items 
 LEFT JOIN products ON products.id = property_items.product_id 
-LEFT JOIN product_prices ON product_prices.product_id = products.id";
+LEFT JOIN product_prices ON product_prices.product_id = products.id
+WHERE property_items.property_id = $_GET[id]";
 $data->items = $db->exec('all');
 
 $sold = [];

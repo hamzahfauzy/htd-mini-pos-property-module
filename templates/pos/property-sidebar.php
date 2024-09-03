@@ -19,48 +19,49 @@
                     <label for="">Harga</label>
                     <p>Rp. {{numberFormat(selectedItem.base_price)}}</p>
                 </div>
-                <div class="form-group">
-                    <label for="">Jenis Pembelian</label>
-                    <select v-model="form.transaction_type" class="form-control">
-                        <option value="">Pilih</option>
-                        <option>Booking</option>
-                        <option>Cash</option>
-                        <option>Kredit</option>
-                    </select>
-                </div>
-                <template v-if="form.transaction_type == 'Kredit'">
-                <div class="form-group">
-                    <label for="">Jumlah Cicilan</label>
-                    <input type="number" class="form-control" v-model="form.instalment">
-                </div>
-                <div class="form-group">
-                    <label for="">Nominal Cicilan</label>
-                    <input type="number" class="form-control" v-model="form.amount_of_instalment">
-                </div>
+                <template v-if="selectedItem.record_status == 'available'">
+                    <div class="form-group">
+                        <label for="">Jenis Pembelian</label>
+                        <select v-model="form.transaction_type" class="form-control">
+                            <option value="">Pilih</option>
+                            <option>Booking</option>
+                            <option>Cash</option>
+                            <option>Kredit</option>
+                        </select>
+                    </div>
+                    <template v-if="form.transaction_type == 'Kredit'">
+                    <div class="form-group">
+                        <label for="">Jumlah Cicilan</label>
+                        <input type="number" class="form-control" v-model="form.instalment">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Nominal Cicilan</label>
+                        <input type="number" class="form-control" v-model="form.amount_of_instalment">
+                    </div>
+                    </template>
+                    <div class="form-group" v-if="form.transaction_type && form.transaction_type != 'Cash'">
+                        <label for="">Tanggal Jatuh Tempo</label>
+                        <input type="date" class="form-control" v-model="form.due_date">
+                    </div>
+                    <div class="form-group">
+                        <label for="">Pembeli</label>
+                        <select class="form-control" v-model="form.customer">
+                            <option value="">Pilih</option>
+                            <option v-for="customer in customers" :key="customer.id" :value="customer.id">{{customer.name}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Sales</label>
+                        <select class="form-control" v-model="form.sales">
+                            <option value="">Pilih</option>
+                            <option v-for="sale in sales" :key="sale.id" :value="sale.id">{{sale.name}}</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="">Tanggal</label>
+                        <input type="date" class="form-control" v-model="form.issue_date">
+                    </div>
                 </template>
-                <div class="form-group" v-if="form.transaction_type && form.transaction_type != 'Cash'">
-                    <label for="">Tanggal Jatuh Tempo</label>
-                    <input type="date" class="form-control" v-model="form.due_date">
-                </div>
-                <div class="form-group">
-                    <label for="">Pembeli</label>
-                    <select class="form-control" v-model="form.customer">
-                        <option value="">Pilih</option>
-                        <option v-for="customer in customers" :key="customer.id" :value="customer.id">{{customer.name}}</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="">Sales</label>
-                    <select class="form-control" v-model="form.sales">
-                        <option value="">Pilih</option>
-                        <option v-for="sale in sales" :key="sale.id" :value="sale.id">{{sale.name}}</option>
-                    </select>
-                </div>
-                <div class="form-group">
-                    <label for="">Tanggal</label>
-                    <input type="date" class="form-control" v-model="form.issue_date">
-                </div>
-                
             </div>
             <div v-if="selectedItem.record_status == 'available'">
                 <div class="form-group">

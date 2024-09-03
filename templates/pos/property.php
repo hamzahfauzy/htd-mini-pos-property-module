@@ -2,7 +2,7 @@
     <link rel="stylesheet" href="css/mode2.css">
     <style>
     .image_map {
-        width: 650px;
+        max-width: 650px;
     }
     .image_map svg {
         width: 100%;

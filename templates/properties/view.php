@@ -70,7 +70,7 @@
                                     <tbody>
                                         <?php if(empty($data->items)): ?>
                                         <tr>
-                                            <td colspan="6" style="text-align:center"><i>Tidak ada data</i></td>
+                                            <td colspan="8" style="text-align:center"><i>Tidak ada data</i></td>
                                         </tr>
                                         <?php endif ?>
                                         <?php foreach($data->items as $index => $item): ?>
@@ -102,10 +102,10 @@
         </div>
     </div>
     <script>
-        <?php foreach($all_code as $code): ?>
+        <?php /* foreach($all_code as $code): ?>
         document.querySelector('#<?=$code?>').onclick = function(){
             alert('<?=$code?>')
         }
-        <?php endforeach; ?>
+        <?php endforeach; */ ?>
     </script>
 <?php load_templates('layouts/bottom') ?>
